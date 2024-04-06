@@ -27,12 +27,6 @@ lspconfig.lua_ls.setup({
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-    buffer = buffer,
-    callback = function()
-        vim.lsp.buf.format { async = false }
-    end
-})
 
 vim.api.nvim_create_autocmd('LspAttach', {
     group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -76,4 +70,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.lsp.buf.format { async = true }
         end, opts)
     end,
+})
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+    callback = function()
+        if vim.bo.filetype ~= "python" then
+            vim.lsp.buf.format { async = false }
+        end
+    end
+})
+
+vim.api.nvim_create_augroup("black_on_save", { clear = true })
+vim.api.nvim_create_autocmd("BufWritePre", {
+    group = "black_on_save",
+    pattern = "*.py",
+    command = "Black",
 })
