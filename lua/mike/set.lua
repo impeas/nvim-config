@@ -1,4 +1,4 @@
-vim.opt.guicursor = ""
+vim.opt.guicursor = "a:blinkon0"
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -33,10 +33,10 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
 vim.diagnostic.config({
-  virtual_text = true,
-  signs = true,
-  underline = true,
-  update_in_insert = false
+    virtual_text = true,
+    signs = true,
+    underline = true,
+    update_in_insert = false
 })
 
 -- You will likely want to reduce updatetime which affects CursorHold
