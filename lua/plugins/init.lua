@@ -12,12 +12,6 @@ return {
     { "hrsh7th/cmp-nvim-lsp" },
     { "hrsh7th/nvim-cmp" },
     {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-    },
-    {
         'nvim-telescope/telescope.nvim',
         tag = '0.1.6',
         dependencies = { 'nvim-lua/plenary.nvim' }
@@ -46,5 +40,19 @@ return {
     {
         "kdheepak/lazygit.nvim",
         dependencies = { 'nvim-lua/plenary.nvim' }
-    }
+    }, {
+    "rose-pine/neovim",
+    name = "rose-pine",
+    config = function()
+        require('rose-pine').setup({
+            disable_background = true,
+        })
+
+        vim.cmd("colorscheme rose-pine")
+        vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+    end
+},
+
+
 }
